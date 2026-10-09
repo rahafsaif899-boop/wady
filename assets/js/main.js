@@ -3,30 +3,37 @@
    Settings live in assets/js/config.js
    ============================================================ */
 
-const CONFIG = Object.assign({ whatsapp: "", instagram: "#", supabaseUrl: "", supabaseAnonKey: "" }, window.SITE_CONFIG || {});
+const CONFIG = Object.assign({ whatsapp: "", instagram: "#", facebook: "#", supabaseUrl: "", supabaseAnonKey: "" }, window.SITE_CONFIG || {});
 CONFIG.currency = { ar: "د.أ", en: "JOD" };
 
 /* ---------- Translations ---------- */
 const I18N = {
   ar: {
-    "brand": "الوادي كلادي",
+    "brand": "وادي كلاي",
     "nav.benefits": "فوائد الفخار", "nav.collection": "المنتجات", "nav.story": "قصتنا", "nav.guide": "طريقة الاستخدام", "nav.contact": "تواصل",
     "hero.eyebrow": "فخار صحي مصنوع باليد · Crafted by Nature",
-    "hero.t1": "ماءٌ أبرد", "hero.t2": "من طين الوادي", "hero.t3": "إلى بيتك",
+    "hero.t1": "مصنوع من", "hero.t2": "تيراكوتا", "hero.t3": "إسبانية",
     "hero.lead": "فخاريات مشغولة باليد تبرّد الماء طبيعياً بلا كهرباء، وتمنحه طعماً أعذب — كما شرب أجدادنا، بتصميم يليق ببيتك اليوم.",
     "hero.shop": "تسوّق المنتجات", "hero.wa": "اطلب عبر واتساب",
-    "trust.1": "الدفع عند الاستلام", "trust.2": "توصيل لكل المحافظات", "trust.3": "صُنع يدوياً في الأردن",
-    "marquee": "تبريد طبيعي ✦ بلا بلاستيك ✦ صُنع باليد ✦ طعم أعذب ✦ الدفع عند الاستلام ✦ Crafted by Nature ✦",
-    "ben.eyebrow": "لماذا الفخار؟", "ben.title": "حكمة الأجداد، في كأس ماء",
-    "ben.lead": "الطين يتنفّس. مسامّه الدقيقة تسمح لقطرات صغيرة بالتبخّر من سطحه، فتنخفض حرارة الماء بداخله طبيعياً — من غير ثلاجة ولا كهرباء.",
-    "ben.1": "تبريد طبيعي", "ben.1p": "ماء بارد ومنعش بدرجة لطيفة على الحلق، بفضل التبخّر الطبيعي عبر مسامّ الطين.",
-    "ben.2": "طعم أعذب", "ben.2p": "الطين يمنح الماء طعماً طبيعياً نقياً يعيدك لذكريات بيت الجدّة.",
-    "ben.3": "بلا بلاستيك", "ben.3p": "بديل صحي وصديق للبيئة لقوارير البلاستيك — خامة طبيعية مئة بالمئة.",
-    "ben.4": "صُنع يدوياً", "ben.4p": "كل قطعة تُشكَّل وتُحرق بعناية، فلا تتكرر قطعتان بنفس التفاصيل.",
+    "trust.1": "الدفع عند الاستلام", "trust.2": "توصيل لكل المحافظات", "trust.3": "كفالة ذهبية ١٠٠٪",
+    "marquee": "تيراكوتا إسبانية ✦ زيولايت أردني ✦ تبريد طبيعي ✦ بلا بلاستيك ✦ صُنع باليد ✦ الدفع عند الاستلام ✦ Crafted by Nature ✦",
+    "ben.eyebrow": "تركيبة مميزة", "ben.title": "سرّ الماء الأطيب في التركيبة",
+    "ben.lead": "مزيج طبيعي مدروس، ثمرة سنوات من البحث والدراسات — صُمّم ليصلك ماء أنقى وأبرد وأطيب.",
+    "blend.1": "تيراكوتا أوروبية فاخرة", "blend.1p": "خامة مختارة من إسبانيا وإيطاليا.",
+    "blend.2": "زيولايت أردني نقي ونادر", "blend.2p": "من كنوز الأردن الطبيعية.",
+    "blend.3": "نظام طبيعي للفلترة والتنقية", "blend.3p": "ثمرة سنوات من البحث والدراسات.",
+    "ben.sub": "مع وادي كلاي بتستمتع بـ",
+    "ben.1": "ماء قلوي متوازن", "ben.1p": "ماء قلوي متوازن وغني بالأكسجين.",
+    "ben.2": "تنقية طبيعية", "ben.2p": "تنقية طبيعية وتوازن للأملاح والمعادن.",
+    "ben.3": "أعذب وأبرد", "ben.3p": "طعم أعذب وبرودة طبيعية بلا كهرباء.",
+    "ben.4": "حماية طبيعية", "ben.4p": "خصائص مضادة للبكتيريا والفيروسات.",
+    "gu.eyebrow": "كفالتنا ذهبية", "gu.title": "راحتك وثقتك هي الأساس",
+    "gu.p": "نضمن لك الأداء والجودة العالية، وحقك بالتبديل أو الترجيع محفوظ «بكلمة وحدة» وفوراً.",
+    "gu.1": "بضاعتنا مكفولة ١٠٠٪", "gu.2": "تبديل أو ترجيع فوري", "gu.3": "الدفع عند الاستلام",
     "col.eyebrow": "منتجاتنا", "col.title": "اختر فخارتك",
     "story.eyebrow": "قصتنا", "story.title": "من الطبيعة صُنعت، وإليها ننتمي",
-    "story.p1": "«الوادي كلادي» وُلدت من إيمان بسيط: أن أجمل الأشياء وأصحّها هي التي تصنعها الطبيعة وتشكّلها يد إنسان صبور. لذلك شعارنا شجرة تحملها يدان — Crafted by Nature.",
-    "story.p2": "نختار طيننا بعناية، نشكّله ببطء، ونحرقه على درجات عالية ليصبح قوياً ونظيفاً وآمناً للماء — ثم يصلك مغلّفاً كهدية.",
+    "story.p1": "«وادي كلاي» وُلدت من إيمان بسيط: أن أجمل الأشياء وأصحّها هي التي تصنعها الطبيعة وتشكّلها يد إنسان صبور. لذلك شعارنا شجرة تحملها يدان — Crafted by Nature.",
+    "story.p2": "نمزج تيراكوتا أوروبية فاخرة من إسبانيا وإيطاليا مع زيولايت أردني نقي، نشكّلها ببطء ونحرقها على ٩٥٠ درجة لتصبح قوية ونظيفة وآمنة للماء — ثم تصلك مغلّفة كهدية.",
     "stat.fire": "درجة حرارة الحرق", "stat.natural": "خامة طبيعية", "stat.gov": "محافظة نوصل لها",
     "proc.eyebrow": "الحِرفة", "proc.title": "من حفنة طين إلى فخارة تعيش معك",
     "proc.s1": "اختيار الطين", "proc.s1p": "نختار خامات طينية نقية وننقّيها ونتركها ترتاح حتى تصبح ليّنة ومطواعة.",
@@ -42,7 +49,7 @@ const I18N = {
     "faq.q1": "ليش الفخارة \"بتعرق\" من برّا؟", "faq.a1": "هذا طبيعي وهو سرّ التبريد: قطرات صغيرة تخرج عبر مسامّ الطين وتتبخر فتبرّد الماء. ضع صحناً تحتها.",
     "faq.q2": "كم مرة لازم أغيّر الماء؟", "faq.a2": "ننصح بتغيير الماء يومياً، وتنظيف الفخارة مرة أسبوعياً.",
     "faq.q3": "كيف بتم الطلب والدفع؟", "faq.a3": "اختار القطع وأرسل طلبك عبر واتساب، نتواصل معك لتأكيد العنوان، والدفع عند الاستلام.",
-    "faq.q4": "شو بصير إذا وصلت القطعة مكسورة؟", "faq.a4": "نغلّف كل قطعة بعناية، وإذا وصلت بأي ضرر نستبدلها لك فوراً.",
+    "faq.q4": "شو إذا ما عجبتني الفخارة أو وصلت فيها مشكلة؟", "faq.a4": "بضاعتنا مكفولة ١٠٠٪ — وحقك بالتبديل أو الترجيع محفوظ «بكلمة وحدة» وفوراً.",
     "rev.eyebrow": "قالوا عنّا",
     "rev.1": "«من أول يوم صرنا نشرب من الفخارة بدل الثلاجة. الماء بارد وطعمه غير.»", "rev.1n": "— رنا، عمّان",
     "rev.2": "«طلبت فخارة هدية لأمي، وصلت بنفس الأسبوع بتغليف بيجنن.»", "rev.2n": "— محمد، إربد",
@@ -58,32 +65,39 @@ const I18N = {
     "cart.note": "سيفتح واتساب برسالة جاهزة فيها طلبك، ونرد عليك لتأكيد التوصيل. الدفع عند الاستلام.",
     "cart.empty": "سلّتك فارغة — اختر فخارتك من المنتجات.", "cart.remove": "إزالة",
     "cart.added": "أُضيفت إلى طلبك ✓", "cart.needItems": "أضف قطعة واحدة على الأقل",
-    "stock.out": "نفد من المخزون", "stock.outBtn": "غير متوفر حالياً", "gift.label": "مع هدية", "mini.name": "رحّال", "mini.meta": "٨٠٠ مل · 18 د.أ", "gift.title": "الهدية مع المنتج",
-    "wa.hello": "مرحباً الوادي كلادي 👋", "wa.order": "أرغب بطلب:",
+    "stock.out": "نفد من المخزون", "stock.outBtn": "غير متوفر حالياً", "gift.label": "مع هدية", "gift.title": "الهدية مع المنتج",
+    "wa.hello": "مرحباً وادي كلاي 👋", "wa.order": "أرغب بطلب:",
     "wa.total": "المجموع", "wa.name": "الاسم", "wa.city": "العنوان", "wa.pay": "الدفع عند الاستلام",
-    "wa.general": "مرحباً الوادي كلادي 👋 حابب أستفسر عن منتجاتكم.",
+    "wa.general": "مرحباً وادي كلاي 👋 حابب أستفسر عن منتجاتكم.",
     "menu": "القائمة", "cartLabel": "سلة الطلب",
-    "title": "الوادي كلادي | Wadi Clay — فخار صحي مصنوع باليد"
+    "title": "وادي كلاي | Wadi Clay — فخار صحي مصنوع باليد"
   },
   en: {
     "brand": "Wadi Clay",
     "nav.benefits": "Why clay", "nav.collection": "Shop", "nav.story": "Our Story", "nav.guide": "How to use", "nav.contact": "Contact",
     "hero.eyebrow": "Handmade healthy pottery · Crafted by Nature",
-    "hero.t1": "Cooler water,", "hero.t2": "from valley clay", "hero.t3": "to your home",
+    "hero.t1": "Crafted from", "hero.t2": "Spanish", "hero.t3": "terracotta",
     "hero.lead": "Hand-thrown clay that cools water naturally — no electricity — and gives it a sweeter taste. The way our grandparents drank, designed for today's home.",
     "hero.shop": "Shop now", "hero.wa": "Order on WhatsApp",
-    "trust.1": "Cash on delivery", "trust.2": "Delivery across Jordan", "trust.3": "Handmade in Jordan",
-    "marquee": "Natural cooling ✦ Plastic-free ✦ Handmade ✦ Sweeter taste ✦ Cash on delivery ✦ Crafted by Nature ✦",
-    "ben.eyebrow": "Why clay?", "ben.title": "Ancestral wisdom, in a glass of water",
-    "ben.lead": "Clay breathes. Its tiny pores let droplets evaporate from the surface, naturally lowering the temperature of the water inside — no fridge, no electricity.",
-    "ben.1": "Natural cooling", "ben.1p": "Refreshingly cool water that's gentle on the throat, thanks to evaporation through the clay.",
-    "ben.2": "Sweeter taste", "ben.2p": "Clay gives water a pure, natural taste that takes you back to grandma's house.",
-    "ben.3": "Plastic-free", "ben.3p": "A healthy, eco-friendly alternative to plastic bottles — 100% natural material.",
-    "ben.4": "Handmade", "ben.4p": "Every piece is shaped and fired with care, so no two are ever alike.",
+    "trust.1": "Cash on delivery", "trust.2": "Delivery across Jordan", "trust.3": "100% golden guarantee",
+    "marquee": "Spanish terracotta ✦ Jordanian zeolite ✦ Natural cooling ✦ Plastic-free ✦ Handmade ✦ Cash on delivery ✦ Crafted by Nature ✦",
+    "ben.eyebrow": "A unique blend", "ben.title": "The secret of better water is in the blend",
+    "ben.lead": "A carefully studied natural blend — the result of years of research — made to give you purer, cooler, better-tasting water.",
+    "blend.1": "Premium European terracotta", "blend.1p": "Selected from Spain and Italy.",
+    "blend.2": "Pure, rare Jordanian zeolite", "blend.2p": "One of Jordan's natural treasures.",
+    "blend.3": "A natural filtration system", "blend.3p": "The fruit of years of research and study.",
+    "ben.sub": "With Wadi Clay you enjoy",
+    "ben.1": "Balanced alkaline water", "ben.1p": "Balanced alkaline water, rich in oxygen.",
+    "ben.2": "Natural purification", "ben.2p": "Natural purification and a healthy balance of salts and minerals.",
+    "ben.3": "Sweeter & cooler", "ben.3p": "A sweeter taste and natural cooling — no electricity.",
+    "ben.4": "Natural protection", "ben.4p": "Antibacterial and antiviral properties.",
+    "gu.eyebrow": "Our golden guarantee", "gu.title": "Your comfort and trust come first",
+    "gu.p": "We guarantee performance and top quality — and your right to exchange or return is honoured instantly, no questions asked.",
+    "gu.1": "100% guaranteed", "gu.2": "Instant exchange or return", "gu.3": "Cash on delivery",
     "col.eyebrow": "Our products", "col.title": "Choose your clay",
     "story.eyebrow": "Our Story", "story.title": "Made by nature, and we belong to it",
     "story.p1": "Wadi Clay was born from a simple belief: the most beautiful and healthy things are made by nature and shaped by patient hands. That's why our emblem is a tree held by two hands — Crafted by Nature.",
-    "story.p2": "We choose our clay carefully, shape it slowly and fire it at high temperatures so it becomes strong, clean and water-safe — then we wrap it for you like a gift.",
+    "story.p2": "We blend premium European terracotta from Spain and Italy with pure Jordanian zeolite, shape it slowly and fire it at 950°C so it becomes strong, clean and water-safe — then we wrap it for you like a gift.",
     "stat.fire": "Firing temperature", "stat.natural": "Natural material", "stat.gov": "Governorates we deliver to",
     "proc.eyebrow": "The Craft", "proc.title": "From a handful of clay to a piece that lives with you",
     "proc.s1": "Choosing the clay", "proc.s1p": "We select pure clay, refine it and let it rest until it is soft and willing.",
@@ -99,7 +113,7 @@ const I18N = {
     "faq.q1": "Why does the clay \"sweat\" on the outside?", "faq.a1": "That's normal — it's the secret of cooling: tiny droplets seep through the pores and evaporate, cooling the water. Keep a plate underneath.",
     "faq.q2": "How often should I change the water?", "faq.a2": "We recommend fresh water daily and a gentle clean once a week.",
     "faq.q3": "How do ordering and payment work?", "faq.a3": "Pick your pieces and send the order on WhatsApp. We'll confirm your address — you pay cash on delivery.",
-    "faq.q4": "What if a piece arrives broken?", "faq.a4": "We pack every piece carefully, and if anything arrives damaged we replace it right away.",
+    "faq.q4": "What if I am not happy with my piece?", "faq.a4": "Everything is 100% guaranteed — exchange or return instantly, no questions asked.",
     "rev.eyebrow": "Kind words",
     "rev.1": "“Since day one we drink from the clay instead of the fridge. The water is cool and tastes different.”", "rev.1n": "— Rana, Amman",
     "rev.2": "“I ordered one as a gift for my mother. It arrived the same week, beautifully wrapped.”", "rev.2n": "— Mohammad, Irbid",
@@ -115,12 +129,12 @@ const I18N = {
     "cart.note": "WhatsApp will open with your order ready to send; we'll reply to confirm delivery. Cash on delivery.",
     "cart.empty": "Your order is empty — pick a piece from the shop.", "cart.remove": "Remove",
     "cart.added": "Added to your order ✓", "cart.needItems": "Add at least one piece",
-    "stock.out": "Out of stock", "stock.outBtn": "Currently unavailable", "gift.label": "Free gift", "mini.name": "Rahhal", "mini.meta": "800 ml · JOD 18", "gift.title": "Comes with a free gift",
+    "stock.out": "Out of stock", "stock.outBtn": "Currently unavailable", "gift.label": "Free gift", "gift.title": "Comes with a free gift",
     "wa.hello": "Hello Wadi Clay 👋", "wa.order": "I'd like to order:",
     "wa.total": "Total", "wa.name": "Name", "wa.city": "Address", "wa.pay": "Cash on delivery",
     "wa.general": "Hello Wadi Clay 👋 I'd like to ask about your products.",
     "menu": "Menu", "cartLabel": "Order basket",
-    "title": "Wadi Clay | الوادي كلادي — Handmade Healthy Pottery"
+    "title": "Wadi Clay | وادي كلاي — Handmade Healthy Pottery"
   }
 };
 
@@ -301,6 +315,9 @@ const STEP_ART = {
 
 /* Icons for the benefits section */
 const BEN_ICONS = {
+  ph: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M32 6C22 22 14 31 14 40a18 18 0 0 0 36 0c0-9-8-18-18-34z"/><text x="32" y="45" text-anchor="middle" font-size="13" font-family="Inter,sans-serif" fill="currentColor" stroke="none" font-weight="600">pH</text></svg>`,
+  filter: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 12h48L38 34v16l-12 6V34z"/><path d="M20 20h24" opacity=".5"/></svg>`,
+  shield: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6 10 14v16c0 14 9.5 24 22 28 12.5-4 22-14 22-28V14z"/><path d="m22 32 7 7 13-14"/></svg>`,
   cool: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M32 6v52M10 19l44 26M54 19 10 45"/><path d="M26 10l6 6 6-6M26 54l6-6 6 6M10 27l8-2-2-8M54 37l-8 2 2 8M54 27l-8-2 2-8M10 37l8 2-2 8"/></svg>`,
   taste: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M32 6C22 22 14 31 14 40a18 18 0 0 0 36 0c0-9-8-18-18-34z"/><path d="M24 42a8 8 0 0 0 8 8"/></svg>`,
   leaf: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 52C12 24 30 10 54 10c0 26-16 42-42 42z"/><path d="M12 52 38 26"/></svg>`,
@@ -394,11 +411,9 @@ function renderGrid() {
 
 const IMG = n => `assets/img/products/${n}.jpg`;
 function renderStatic() {
-  // Hero: real product photo in an arch frame + a small floating product card
+  // Hero: real product photo in an arch frame
   $(".hero__stage").classList.add("is-photo");
   $("#heroVessel").innerHTML = `<img src="${IMG("ghaith-15")}" alt="غيث — Ghaith 15L" fetchpriority="high">`;
-  $(".hero__stage").insertAdjacentHTML("beforeend",
-    `<div class="hero__mini" aria-hidden="true"><img src="${IMG("rahhal")}" alt=""><span><b data-i18n="mini.name">رحّال</b><small data-i18n="mini.meta">٨٠٠ مل · 18 د.أ</small></span></div>`);
   $(".story__img--a").innerHTML = `<img src="${IMG("naqaa")}" alt="" loading="lazy">`;
   $(".story__img--b").innerHTML = `<img src="${IMG("nada")}" alt="" loading="lazy">`;
   $$(".step__art").forEach(el => { el.innerHTML = STEP_ART[el.dataset.art] || ""; });
@@ -635,6 +650,7 @@ function bindEvents() {
   });
 
   $$(".js-ig").forEach(a => { a.href = CONFIG.instagram; });
+  $$(".js-fb").forEach(a => { a.href = CONFIG.facebook; });
 
   // Header: solid after scroll, hides on scroll down
   let lastY = 0;
@@ -795,7 +811,6 @@ function intro() {
     .from(".hero__eyebrow, .hero__lead, .hero__cta", { y: 30, opacity: 0, duration: 1, stagger: .1, ease: "expo.out" }, "-=1")
     .from(".hero__vessel", { clipPath: "inset(100% 0% 0% 0% round 999px 999px 28px 28px)", duration: 1.6, ease: "expo.inOut" }, "-=1.3")
     .from(".hero__vessel img", { scale: 1.3, duration: 2, ease: "expo.out" }, "<")
-    .from(".hero__mini", { y: 40, opacity: 0, duration: 1, ease: "expo.out" }, "-=1")
     .from(".hero__wheel", { scaleX: 0, opacity: 0, duration: 1, ease: "expo.out" }, "<")
     .from(".badge", { scale: 0, rotate: -90, opacity: 0, duration: 1.2, ease: "back.out(1.6)" }, "-=1")
     .from(".header > *", { y: -30, opacity: 0, duration: .9, stagger: .08, ease: "expo.out" }, "-=1.1")
