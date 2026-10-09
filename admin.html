@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>لوحة التحكم | الوادي كلادي</title>
+  <meta name="theme-color" content="#3B2414">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%235A3420' d='M24 6h16v4q-3 2-3 6 16 6 18 22 1 18-11 24H20Q8 56 9 38q2-16 18-22 0-4-3-6z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+  <!-- Not configured -->
+  <section class="screen center" id="setupScreen" hidden>
+    <div class="box">
+      <h1>لوحة التحكم غير مفعّلة بعد</h1>
+      <p>أضف رابط Supabase والمفتاح العام في الملف <code>assets/js/config.js</code> ثم حدّث الصفحة. الخطوات كاملة في ملف <code>README-AR.md</code>.</p>
+    </div>
+  </section>
+
+  <!-- Login -->
+  <section class="screen center" id="loginScreen" hidden>
+    <form class="box login" id="loginForm">
+      <div class="login__logo">
+        <img src="assets/img/logo.png" alt="" onerror="this.remove()">
+      </div>
+      <h1>أهلاً بكِ في لوحة التحكم</h1>
+      <p class="muted">الوادي كلادي · Wadi Clay</p>
+      <label class="field"><span>البريد الإلكتروني</span><input type="email" id="email" autocomplete="username" required></label>
+      <label class="field"><span>كلمة السر</span><input type="password" id="password" autocomplete="current-password" required></label>
+      <button class="btn btn--primary btn--block" type="submit" id="loginBtn">تسجيل الدخول</button>
+      <p class="error" id="loginError" role="alert"></p>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <section class="screen" id="appScreen" hidden>
+    <header class="topbar">
+      <div class="topbar__brand"><b>الوادي كلادي</b><small>لوحة التحكم</small></div>
+      <div class="topbar__actions">
+        <a class="btn btn--ghost" href="./" target="_blank" rel="noopener">عرض الموقع ↗</a>
+        <button class="btn btn--ghost" id="logoutBtn" type="button">خروج</button>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div class="toolbar">
+        <div>
+          <h1>المنتجات</h1>
+          <p class="muted" id="countLabel"></p>
+        </div>
+        <div class="toolbar__right">
+          <input type="search" id="search" placeholder="ابحث عن منتج…" aria-label="بحث">
+          <select id="catFilter" aria-label="التصنيف"></select>
+          <button class="btn btn--primary" id="addBtn" type="button">+ منتج جديد</button>
+        </div>
+      </div>
+
+      <div class="list" id="list"></div>
+    </main>
+  </section>
+
+  <!-- Product editor -->
+  <div class="sheet" id="sheet" aria-hidden="true">
+    <div class="sheet__backdrop" data-close></div>
+    <form class="sheet__panel" id="productForm" novalidate>
+      <div class="sheet__head">
+        <h2 id="sheetTitle">منتج جديد</h2>
+        <button type="button" class="icon-btn" data-close aria-label="إغلاق">✕</button>
+      </div>
+
+      <div class="sheet__body">
+        <div class="uploader" id="uploader">
+          <img id="preview" alt="" hidden>
+          <div class="uploader__empty" id="uploaderEmpty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg>
+            <b>أضيفي صورة المنتج</b>
+            <small>اضغطي هنا أو اسحبي الصورة — يتم ضغطها تلقائياً</small>
+          </div>
+          <input type="file" id="imageInput" accept="image/*">
+          <button type="button" class="uploader__remove" id="removeImage" hidden>إزالة الصورة</button>
+        </div>
+
+        <div class="grid2">
+          <label class="field"><span>اسم المنتج (عربي) *</span><input id="f_name_ar" required maxlength="80"></label>
+          <label class="field"><span>Product name (English)</span><input id="f_name_en" dir="ltr" maxlength="80"></label>
+        </div>
+
+        <div class="grid3">
+          <label class="field"><span>السعر (د.أ) *</span><input id="f_price" type="number" min="0" step="0.01" inputmode="decimal" required></label>
+          <label class="field"><span>السعر قبل الخصم</span><input id="f_old_price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="اتركيه فارغاً إذا لا يوجد عرض"></label>
+          <label class="field"><span>التصنيف</span><select id="f_category"></select></label>
+        </div>
+
+        <div class="grid2">
+          <label class="field"><span>السعة / المقاس (عربي)</span><input id="f_capacity_ar" maxlength="40" placeholder="مثال: ١.٥ لتر"></label>
+          <label class="field"><span>Capacity (English)</span><input id="f_capacity_en" dir="ltr" maxlength="40" placeholder="e.g. 1.5 L"></label>
+        </div>
+
+        <div class="grid2">
+          <label class="field"><span>🎁 الهدية مع المنتج (عربي)</span><input id="f_gifts_ar" maxlength="120" placeholder="مثال: كوب فخار، صحن ترشيح"></label>
+          <label class="field"><span>Free gift (English)</span><input id="f_gifts_en" dir="ltr" maxlength="120" placeholder="e.g. Clay cup, drip plate"></label>
+        </div>
+
+        <label class="field"><span>الوصف (عربي)</span><textarea id="f_desc_ar" rows="3" maxlength="600"></textarea></label>
+        <label class="field"><span>Description (English)</span><textarea id="f_desc_en" rows="3" dir="ltr" maxlength="600"></textarea></label>
+
+        <div class="grid3">
+          <label class="field"><span>شارة (اختياري)</span><input id="f_tag_ar" maxlength="24" placeholder="جديد / عرض / الأكثر طلباً"></label>
+          <label class="field"><span>Badge (English)</span><input id="f_tag_en" dir="ltr" maxlength="24" placeholder="New / Offer"></label>
+          <label class="field"><span>الترتيب</span><input id="f_sort_order" type="number" step="1" inputmode="numeric" placeholder="1 = أولاً"></label>
+        </div>
+
+        <div class="switches">
+          <label class="switch"><input type="checkbox" id="f_in_stock" checked><span></span>متوفر بالمخزون</label>
+          <label class="switch"><input type="checkbox" id="f_is_active" checked><span></span>ظاهر على الموقع</label>
+        </div>
+      </div>
+
+      <div class="sheet__foot">
+        <p class="error" id="formError" role="alert"></p>
+        <button type="button" class="btn btn--ghost" data-close>إلغاء</button>
+        <button type="submit" class="btn btn--primary" id="saveBtn">حفظ المنتج</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
