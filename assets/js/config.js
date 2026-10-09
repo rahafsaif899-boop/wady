@@ -5,7 +5,7 @@ window.SITE_CONFIG = {
   // WhatsApp number in international format, no + or spaces (e.g. 962791234567)
   whatsapp: "962797838721",
   instagram: "https://www.instagram.com/wadiclay/",
-  facebook: "https://www.facebook.com/",   // TODO: replace with the Wadi Clay page link
+  facebook: "https://www.facebook.com/profile.php?id=61584512424077",
 
   // Supabase (admin panel + live products). Leave empty to use assets/js/products.js instead.
   // Both values are in Supabase → Project Settings → API. The anon key is public by design;

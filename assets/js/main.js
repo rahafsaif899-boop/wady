@@ -70,7 +70,7 @@ const I18N = {
     "wa.total": "المجموع", "wa.name": "الاسم", "wa.city": "العنوان", "wa.pay": "الدفع عند الاستلام",
     "wa.general": "مرحباً وادي كلاي 👋 حابب أستفسر عن منتجاتكم.",
     "menu": "القائمة", "cartLabel": "سلة الطلب",
-    "title": "وادي كلاي | Wadi Clay — فخار صحي مصنوع باليد"
+    "title": "وادي كلاي | فخار صحي لتبريد وتنقية الماء في الأردن — Wadi Clay"
   },
   en: {
     "brand": "Wadi Clay",
@@ -134,7 +134,7 @@ const I18N = {
     "wa.total": "Total", "wa.name": "Name", "wa.city": "Address", "wa.pay": "Cash on delivery",
     "wa.general": "Hello Wadi Clay 👋 I'd like to ask about your products.",
     "menu": "Menu", "cartLabel": "Order basket",
-    "title": "Wadi Clay | وادي كلاي — Handmade Healthy Pottery"
+    "title": "Wadi Clay | Healthy Clay Water Vessels in Jordan — وادي كلاي"
   }
 };
 
@@ -386,6 +386,42 @@ function priceHTML(p) {
     : `<span class="price">${money(p.price)}</span>`;
 }
 
+/* Structured data (schema.org) so Google understands the store and its products.
+   Built from the live product list, with absolute URLs for the current domain. */
+function updateSchema() {
+  const abs = u => (u ? new URL(u, location.href).href : undefined);
+  const home = abs("./");
+  const store = {
+    "@type": "Store", "@id": home + "#store", name: "Wadi Clay", alternateName: "وادي كلاي",
+    description: "فخاريات ماء مصنوعة يدوياً من تيراكوتا أوروبية وزيولايت أردني — تبريد وتنقية طبيعية للماء.",
+    url: home, logo: abs("assets/img/logo.png"), image: abs("assets/img/og-image.jpg"),
+    telephone: "+" + CONFIG.whatsapp, priceRange: "JOD 18 - 99",
+    paymentAccepted: "Cash on delivery", currenciesAccepted: "JOD",
+    address: { "@type": "PostalAddress", addressCountry: "JO" },
+    areaServed: { "@type": "Country", name: "Jordan" },
+    sameAs: [CONFIG.instagram, CONFIG.facebook].filter(u => /^https:/.test(u))
+  };
+  const list = {
+    "@type": "ItemList", name: "منتجات وادي كلاي",
+    itemListElement: PRODUCT_LIST.map((p, i) => ({
+      "@type": "ListItem", position: i + 1,
+      item: {
+        "@type": "Product", name: `${p.name_ar}${p.capacity_ar ? " " + p.capacity_ar : ""} — ${p.name_en || "Wadi Clay"}`,
+        description: p.desc_ar || undefined, image: abs(p.image_url) || undefined,
+        brand: { "@type": "Brand", name: "Wadi Clay" }, category: "Clay water vessels",
+        offers: {
+          "@type": "Offer", price: p.price.toFixed(2), priceCurrency: "JOD",
+          availability: p.in_stock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+          seller: { "@id": home + "#store" }
+        }
+      }
+    }))
+  };
+  let el = document.getElementById("schemaData");
+  if (!el) { el = document.createElement("script"); el.type = "application/ld+json"; el.id = "schemaData"; document.head.appendChild(el); }
+  el.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": [store, list] });
+}
+
 function renderGrid() {
   if (!PRODUCT_LIST.length) { $("#grid").innerHTML = ""; return; }
   $("#grid").innerHTML = PRODUCT_LIST.map(p => {
@@ -413,14 +449,14 @@ const IMG = n => `assets/img/products/${n}.jpg`;
 function renderStatic() {
   // Hero: real product photo in an arch frame
   $(".hero__stage").classList.add("is-photo");
-  $("#heroVessel").innerHTML = `<img src="${IMG("ghaith-15")}" alt="غيث — Ghaith 15L" fetchpriority="high">`;
-  $(".story__img--a").innerHTML = `<img src="${IMG("naqaa")}" alt="" loading="lazy">`;
-  $(".story__img--b").innerHTML = `<img src="${IMG("nada")}" alt="" loading="lazy">`;
+  $("#heroVessel").innerHTML = `<img src="${IMG("ghaith-15")}" alt="موزّع ماء فخار غيث ١٥ لتر من وادي كلاي" fetchpriority="high">`;
+  $(".story__img--a").innerHTML = `<img src="${IMG("naqaa")}" alt="فخارة نقاء من تيراكوتا — وادي كلاي" loading="lazy">`;
+  $(".story__img--b").innerHTML = `<img src="${IMG("nada")}" alt="مج ندى الفخاري مع صحن ترشيح" loading="lazy">`;
   $$(".step__art").forEach(el => { el.innerHTML = STEP_ART[el.dataset.art] || ""; });
   $$(".benefit__ico").forEach(el => { el.innerHTML = BEN_ICONS[el.dataset.ico] || ""; });
 
-  const gallery = ["rawaq", "ghaith-6", "irwaa", "qarora", "thara", "naqaa", "rahhal", "ghaith-15"];
-  $("#masonry").innerHTML = gallery.map(n => `<figure><img src="${IMG(n)}" alt="" loading="lazy"></figure>`).join("");
+  const gallery = [["rawaq", "فخارة رواق ١٥٠٠ مل"], ["ghaith-6", "موزّع ماء غيث ٦ لتر"], ["irwaa", "قارورة إرواء ١٣٠٠ مل"], ["qarora", "القارورة ١٢ لتر مع مضخة"], ["thara", "فخارة ثرى ٩٠٠ مل مع شنطة"], ["naqaa", "فخارة نقاء ١٤٠٠ مل"], ["rahhal", "تمبلر رحّال ٨٠٠ مل"], ["ghaith-15", "موزّع ماء غيث ١٥ لتر"]];
+  $("#masonry").innerHTML = gallery.map(([n, alt]) => `<figure><img src="${IMG(n)}" alt="${alt} — وادي كلاي" loading="lazy"></figure>`).join("");
 }
 
 /* ---------- Language ---------- */
@@ -829,8 +865,10 @@ initPointerFX();
 initMotion();
 
 // Live products from the admin panel (if Supabase is configured)
+updateSchema();
 loadProducts().then(ok => {
   if (!ok) return;
+  updateSchema();
   renderFilters();
   renderGrid();
   renderCart();
