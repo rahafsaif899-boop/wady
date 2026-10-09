@@ -2,3 +2,6 @@
 raw-photos/
 Thumbs.db
 .DS_Store
+
+# local copy of setup.sql with the real admin e-mail - never commit
+supabase/*.local.sql
