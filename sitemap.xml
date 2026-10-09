@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.wadiclay.com/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image><image:loc>https://www.wadiclay.com/assets/img/products/ghaith-15.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.wadiclay.com/assets/img/products/qarora.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.wadiclay.com/assets/img/products/ghaith-6.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.wadiclay.com/assets/img/products/rawaq.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.wadiclay.com/assets/img/products/naqaa.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.wadiclay.com/assets/img/products/irwaa.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.wadiclay.com/assets/img/products/nada.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.wadiclay.com/assets/img/products/thara.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.wadiclay.com/assets/img/products/rahhal.jpg</image:loc></image:image>
+  </url>
+</urlset>

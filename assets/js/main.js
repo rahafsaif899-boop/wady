@@ -389,8 +389,9 @@ function priceHTML(p) {
 /* Structured data (schema.org) so Google understands the store and its products.
    Built from the live product list, with absolute URLs for the current domain. */
 function updateSchema() {
-  const abs = u => (u ? new URL(u, location.href).href : undefined);
-  const home = abs("./");
+  // always the canonical domain, even when opened from a preview URL
+  const home = document.querySelector('link[rel="canonical"]')?.href || new URL("./", location.href).href;
+  const abs = u => (u ? new URL(u, home).href : undefined);
   const store = {
     "@type": "Store", "@id": home + "#store", name: "Wadi Clay", alternateName: "وادي كلاي",
     description: "فخاريات ماء مصنوعة يدوياً من تيراكوتا أوروبية وزيولايت أردني — تبريد وتنقية طبيعية للماء.",
